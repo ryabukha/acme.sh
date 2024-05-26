@@ -1,4 +1,4 @@
-FROM alpine:3.17
+FROM alpine:3.19 as acme.sh
 
 RUN apk --no-cache add -f \
   openssl \
@@ -74,3 +74,9 @@ VOLUME /acme.sh
 
 ENTRYPOINT ["/entry.sh"]
 CMD ["--help"]
+
+FROM acme.sh as cert-issue
+RUN apk add --no-cache aws-cli
+COPY cert-issue.sh /cert-issue.sh
+ENTRYPOINT [ "/cert-issue.sh" ]
+CMD [ "" ]
