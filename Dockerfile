@@ -78,5 +78,5 @@ CMD ["--help"]
 FROM acme.sh as cert-issue
 RUN apk add --no-cache aws-cli
 COPY cert-issue.sh /cert-issue.sh
-ENTRYPOINT [ "/cert-issue.sh" ]
-CMD [ "" ]
+ENTRYPOINT [ "" ]
+CMD [ "/cert-issue.sh" ]
